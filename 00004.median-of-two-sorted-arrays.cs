@@ -1,4 +1,4 @@
-public static double FindMedianSortedArrays(int[] nums1, int[] nums2) 
+public double FindMedianSortedArrays(int[] nums1, int[] nums2) 
 {
     int totalCount = nums1.Length + nums2.Length;
 
@@ -6,8 +6,10 @@ public static double FindMedianSortedArrays(int[] nums1, int[] nums2)
     int yIdx = 0;
 
     bool isEven = (totalCount % 2) == 0;
-    int requiredPosition = (totalCount / 2) - (isEven ? 1 : 0);
+    int requiredPosition = totalCount / 2;
     int currentPosition = -1;
+
+    int previousValue = 0;
     int currentValue = 0;
 
     while(xIdx < nums1.Length && yIdx < nums2.Length && currentPosition < requiredPosition)
@@ -17,11 +19,13 @@ public static double FindMedianSortedArrays(int[] nums1, int[] nums2)
 
         if (xValue < yValue)
         {
+            previousValue = currentValue;
             currentValue = xValue;
             xIdx++;
         }
         else
         {
+            previousValue = currentValue;
             currentValue = yValue;
             yIdx++;
 
@@ -32,23 +36,21 @@ public static double FindMedianSortedArrays(int[] nums1, int[] nums2)
 
     for(;xIdx < nums1.Length && currentPosition < requiredPosition; xIdx++)
     {
+        previousValue = currentValue;
         currentValue = nums1[xIdx];
         currentPosition++;
     }
 
     for(;yIdx < nums2.Length && currentPosition < requiredPosition; yIdx++)
     {
+        previousValue = currentValue;
         currentValue = nums2[yIdx];
         currentPosition++;
     }
 
     if (isEven)
     {
-        int other = xIdx >= nums1.Length ? nums2[yIdx] 
-            : yIdx >= nums2.Length ? nums1[xIdx]
-            : Math.Min(nums1[xIdx], nums2[yIdx]);
-            
-        return ((double)currentValue + other) / 2;
+        return ((double)currentValue + previousValue) / 2;
     }
     else 
     {
