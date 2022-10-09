@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/median-of-two-sorted-arrays/description/
 public double FindMedianSortedArrays(int[] nums1, int[] nums2) 
 {
     int totalCount = nums1.Length + nums2.Length;
