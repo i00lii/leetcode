@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/zigzag-conversion/description/
 public string Convert(string s, int numRows) 
 {
     char[] result = new char[s.Length];
