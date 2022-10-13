@@ -16,7 +16,6 @@ public string LongestPalindrome(string s)
 
     result = buffer[0];
 
-
     while (buffer.Count > 0)
     {
         for (int idx = 0; idx < buffer.Count;)
