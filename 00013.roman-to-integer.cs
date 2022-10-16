@@ -4,7 +4,7 @@ public int RomanToInt(string s)
     int result = 0;
     int previousValue = 0;
 
-    for(int idx = s.Length -1; idx >= 0; idx--)
+    for(int idx = s.Length - 1; idx >= 0; idx--)
     {
         int currentValue = s[idx] switch
         {
