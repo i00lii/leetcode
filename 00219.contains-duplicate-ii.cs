@@ -4,7 +4,7 @@ public bool ContainsNearbyDuplicate(int[] nums, int k)
     if (k == 0)
         return false;
 
-    HashSet<int> lookup= new HashSet<int>(k);
+    HashSet<int> lookup = new HashSet<int>(k);
 
     for(int idx = 0; idx < Math.Min(k, nums.Length); idx++)
     {
