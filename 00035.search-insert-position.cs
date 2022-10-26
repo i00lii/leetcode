@@ -6,8 +6,8 @@ public class Solution
         int xIdx = 0;
         int yIdx = nums.Length - 1;
         
-        if (target <= nums[0])
-            return 0;
+        if (target <= nums[xIdx])
+            return xIdx;
         
         if (target == nums[yIdx])
             return yIdx;
