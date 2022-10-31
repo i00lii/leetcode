@@ -18,8 +18,8 @@ public class Solution
                     int nextYIdx = xIdx;
 
                     ref int next = ref matrix[nextYIdx][nextXIdx];
-                    int buffer = next;
 
+                    int buffer = next;
                     next = current;
                     current = buffer;
 
