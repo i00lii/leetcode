@@ -3,77 +3,50 @@ public class Solution
 {
     public int LongestPalindrome(string[] words) 
     {
-        Dictionary<(char, char), Context> buffer = new();
+        Dictionary<(char, char), int> buffer = new();
         
         foreach (string word in words)
         {
-            char x = word[0];
-            char y = word[1];
+            (char, char) key = (word[0], word[1]);
             
-            if (x < y)
+            
+            if (buffer.ContainsKey(key))
             {
-                if (buffer.TryGetValue((x,y), out Context value))
-                {
-                    value.ForwardCount++;
-                }
-                else 
-                {    
-                    buffer[(x, y)] = new Context(1, 0, false);
-                }
-            }
-            else if (x > y)
-            {
-                if (buffer.TryGetValue((y, x), out Context value))
-                {
-                    value.BackwardCount++;
-                }
-                else 
-                {    
-                    buffer[(y, x)] = new Context(0, 1, false);
-                }
+                buffer[key]++;
             }
             else 
             {
-                if (buffer.TryGetValue((x, y), out Context value))
-                {
-                    if (value.ForwardCount > value.BackwardCount)
-                    {                        
-                        value.BackwardCount++;
-                    }
-                    else
-                    {
-                        value.ForwardCount++;
-                    }
-                }
-                else 
-                {    
-                    buffer[(x, y)] = new Context(1, 0, true);
-                }
+                buffer[key] = 1;
             }
         }
         
-        bool isExtraPiece = false;
-        int pairedPiecesCount = 0;
+        bool extraPiece = false;
+        int result = 0;
         
-        foreach (Context value in buffer.Values)
+        foreach (KeyValuePair<(char, char), int> value in buffer)
         {
-            if (!isExtraPiece && value.IsSameLetters && value.ForwardCount != value.BackwardCount)
-            {
-                isExtraPiece = true;
-            }
+            ((char X, char Y) key, int count) = value;
             
-            pairedPiecesCount += Math.Min(value.ForwardCount, value.BackwardCount);
+            if (key.X != key.Y)
+            {
+                if (buffer.TryGetValue((key.Y, key.X), out int backwardCount))
+                {   
+                    result += Math.Min(count, backwardCount) * 4;
+                    buffer.Remove((key.Y, key.X));
+                }
+            }
+            else
+            {
+                result += count / 2 * 4;
+                
+                if (!extraPiece && count % 2 != 0)
+                {
+                    extraPiece = true;
+                    result += 2;
+                }
+            }
         }
-        
-        return (pairedPiecesCount * 4) + (isExtraPiece ? 2 : 0);
-    }
-    
-    private sealed class Context
-    {
-        public int ForwardCount;
-        public int BackwardCount;
-        public bool IsSameLetters { get; }
-        
-        public Context(int forwardCount, int backwardCount, bool isSameLetters) => (ForwardCount, BackwardCount, IsSameLetters) = (forwardCount, backwardCount, isSameLetters);
+
+        return result;
     }
 }
