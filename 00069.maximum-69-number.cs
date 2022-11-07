@@ -10,9 +10,7 @@ public class Solution
         
         while (buffer > 0)
         {
-            int value = buffer % 10;
-
-            if (value == 6)
+            if (buffer % 10 == 6)
             {
                 max = num + 3 * multiplier;
             }
