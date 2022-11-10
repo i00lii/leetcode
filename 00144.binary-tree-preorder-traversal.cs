@@ -12,7 +12,8 @@
  *     }
  * }
  */
-public class Solution {
+public class Solution 
+{
     public IList<int> PreorderTraversal(TreeNode root) 
     {
         List<int> result = new();
