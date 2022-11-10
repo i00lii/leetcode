@@ -24,7 +24,7 @@ public class Solution
 
         int result = int.MaxValue;
         while (buffer.TryPop(out (TreeNode Node, int Depth) value))
-        {
+        { 
             if (value.Node.left == default && value.Node.right == default)
             {
                 result = Math.Min(result, value.Depth);
