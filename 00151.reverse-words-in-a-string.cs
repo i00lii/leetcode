@@ -33,7 +33,6 @@ public class Solution
     {
         while (to > from)
         {
-
             char temp = buffer[from];
             buffer[from++] = buffer[to];
             buffer[to--] = temp;
