@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/third-maximum-number/description/
 public class Solution 
 {
     public int ThirdMax(int[] nums) 
