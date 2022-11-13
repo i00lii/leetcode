@@ -23,11 +23,8 @@ public class Solution
                 continue;
             }
             
-            nums[x] = valueY;
-            nums[y] = valueX;
-            
-            y--;
-            x++;   
+            nums[x++] = valueY;
+            nums[y--] = valueX;
         }
         
         return nums;
