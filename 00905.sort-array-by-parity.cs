@@ -3,7 +3,6 @@ public class Solution
 {
     public int[] SortArrayByParity(int[] nums) 
     {
-        
         int x = 0;
         int y = nums.Length - 1;
         
