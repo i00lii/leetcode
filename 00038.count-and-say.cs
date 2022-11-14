@@ -11,7 +11,6 @@ public class Solution
 
     public string CountAndSay(int n)
     {
-
         if (_buffer[n - 1] is {} buffered)
         {
             return buffered;
