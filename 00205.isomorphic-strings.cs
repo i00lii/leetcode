@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/isomorphic-strings/description
 public class Solution 
 {
     public bool IsIsomorphic(string s, string t) 
