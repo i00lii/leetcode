@@ -3,12 +3,12 @@ public class Solution
 {
     public int HammingWeight(uint n) 
     {
-        const int size = sizeof(uint) * 8;
-        
         uint result = 0;
-        for (int idx = 0; idx < size; idx++)
+
+        while (n > 0)
         {
-            result += (n >> idx) & 1;
+            n &= n-1;
+            result++;
         }
 
         return (int)result;
